@@ -8,6 +8,7 @@ public class SchnuppiBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SchnuppiBackendApplication.class, args);
+        System.out.println("HOMOS");
 	}
 
 }
