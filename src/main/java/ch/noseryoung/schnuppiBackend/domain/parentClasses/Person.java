@@ -1,10 +1,8 @@
-package ch.noseryoung.schnuppiBackend.domain.person;
+package ch.noseryoung.schnuppiBackend.domain.parentClasses;
 
 import javax.persistence.*;
-import javax.websocket.ClientEndpoint;
 
 @Entity
-@Table
 public class Person {
 
     @Id
