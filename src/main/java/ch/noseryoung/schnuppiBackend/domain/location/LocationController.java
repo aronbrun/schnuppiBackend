@@ -57,4 +57,24 @@ public class LocationController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/location_name/{location_name}")
+    public @ResponseBody ResponseEntity<Location> getByLocationName(@PathVariable String location_name){
+        Optional<Location> location = locationService.findByLocationName(location_name);
+        if (location.isPresent()) {
+            return new ResponseEntity<>(location.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/postal_code/{postal_code}")
+    public @ResponseBody ResponseEntity<Location> getByPostalCode(@PathVariable String postal_code){
+        Optional<Location> location = locationService.findByPostalCode(postal_code);
+        if (location.isPresent()) {
+            return new ResponseEntity<>(location.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

@@ -21,20 +21,32 @@ public class LocationService {
         return  location;
     }
 
-    public Optional<Location>  findByAdress(String adress){
+    public Optional<Location> findByAdress(String adress){
         Optional<Location> location = locationRepository.findByAdress(adress);
 
         return  location;
     }
 
-    public Optional<Location>  findByCity(String city){
+    public Optional<Location> findByCity(String city){
         Optional<Location> location = locationRepository.findByCity(city);
 
         return  location;
     }
 
-    public Optional<Location>  findByCountry(String country){
+    public Optional<Location> findByCountry(String country){
         Optional<Location> location = locationRepository.findByCountry(country);
+
+        return  location;
+    }
+
+    public Optional<Location> findByLocationName(String location_name){
+        Optional<Location> location = locationRepository.findByLocationName(location_name);
+
+        return  location;
+    }
+
+    public Optional<Location> findByPostalCode(String postal_code){
+        Optional<Location> location = locationRepository.findByPostalCode(postal_code);
 
         return  location;
     }
