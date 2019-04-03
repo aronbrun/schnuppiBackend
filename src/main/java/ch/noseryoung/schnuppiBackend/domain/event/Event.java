@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 
 @Entity
@@ -34,16 +35,16 @@ public class Event {
 
     @ManyToMany
     @JoinTable
-    private Supervisor supervisor;
+    private Set<Supervisor> supervisor;
 
-    public Event(String name, Location location, LocalDate dateTime, String subject, Supervisor supervisor) {
+    public Event(String name, Location location, LocalDate dateTime, String subject, Set<Supervisor> supervisor) {
         this.name = name;
         this.location = location;
         this.dateTime = dateTime;
         this.subject = subject;
         this.supervisor = supervisor;
     }
-    public Event(Long id, String name, Location location, LocalDate dateTime, String subject, Supervisor supervisor) {
+    public Event(Long id, String name, Location location, LocalDate dateTime, String subject, Set<Supervisor> supervisor) {
         this.id = id;
         this.name = name;
         this.location = location;
