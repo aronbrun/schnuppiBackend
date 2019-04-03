@@ -1,5 +1,6 @@
 package ch.noseryoung.schnuppiBackend.domain.event;
 
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class EventController {
     }
 
     //getting database entry by name
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public @ResponseBody ResponseEntity<Event> getById(@PathVariable Long id){
         Optional<Event> event = eventService.findById(id);
         if (event.isPresent()) {
@@ -37,5 +38,10 @@ public class EventController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+    //create new Event
+    @PostMapping({"", "/"})
+    public @ResponseBody ResponseEntity<Event> createEvent(@RequestBody Event event){
+        eventService.save(event);
     }
 }
