@@ -37,6 +37,9 @@ public class Event {
     @JoinTable
     private Set<Supervisor> supervisor;
 
+    public Event() {
+    }
+
     public Event(String name, Location location, LocalDate dateTime, String subject, Set<Supervisor> supervisor) {
         this.name = name;
         this.location = location;
