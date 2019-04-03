@@ -24,4 +24,21 @@ public class Location {
 
     @Column
     private String country;
+
+    public Location(Long id, String locationName, String adress, String city, String postalCode, String country) {
+        this.id = id;
+        this.locationName = locationName;
+        this.adress = adress;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.country = country;
+    }
+
+    public Location(String locationName, String adress, String city, String postalCode, String country) {
+        this.locationName = locationName;
+        this.adress = adress;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.country = country;
+    }
 }

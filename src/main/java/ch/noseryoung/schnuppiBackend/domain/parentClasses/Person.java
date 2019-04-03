@@ -19,5 +19,8 @@ public class Person {
 
     @Column
     private String email;
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
 }
