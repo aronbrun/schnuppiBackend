@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 
@@ -25,13 +26,18 @@ public class Trainee extends Person {
 
     @ManyToMany
     @JoinTable
-    private Event event;
+    private Set<Event> events;
 
-    // Creating a random UUID (Universally unique identifier).
-    public void createUUID(){
-        UUID uuid = java.util.UUID.randomUUID();
-        this.uuid = uuid.toString();
+    public Trainee(String age, String uuid, Set<Event> events) {
+        this.age = age;
+        this.uuid = UUID.randomUUID().toString();
+        this.events = events;
     }
 
-
+    public Trainee(Long id, String age, String uuid, Set<Event> events) {
+        this.id = id;
+        this.age = age;
+        this.uuid = uuid;
+        this.events = events;
+    }
 }

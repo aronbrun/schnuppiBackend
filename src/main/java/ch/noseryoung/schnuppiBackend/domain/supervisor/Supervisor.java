@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -22,4 +23,17 @@ public class Supervisor extends Person {
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
+
+    public Supervisor(String jobDescription, Location location) {
+        this.jobDescription = jobDescription;
+        this.location = location;
+    }
+
+    public Supervisor(Long id, String jobDcription, Location location) {
+        this.id = id;
+        this.jobDescription = jobDescription;
+        this.location = location;
+    }
 }
+
+
