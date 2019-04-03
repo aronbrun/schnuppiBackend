@@ -1,4 +1,4 @@
-package ch.noseryoung.schnuppiBackend.domain.berufsbildner;
+package ch.noseryoung.schnuppiBackend.domain.supervisor;
 
 import ch.noseryoung.schnuppiBackend.domain.location.Location;
 import ch.noseryoung.schnuppiBackend.domain.parentClasses.Person;
