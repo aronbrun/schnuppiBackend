@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -17,11 +18,22 @@ public class EventController {
         this.eventService = eventService;
     }
 
+    //getting database entry by name
     @GetMapping("/{id}")
     public @ResponseBody ResponseEntity<Event> getById(@PathVariable Long id){
         Optional<Event> event = eventService.findById(id);
         if (event.isPresent()) {
             return new ResponseEntity<>(event.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    //getting all database entries in entity
+    @GetMapping({"", "/"})
+    public @ResponseBody ResponseEntity<List<Event>> getAll(@PathVariable Long id){
+        List<Event> events = eventService.findAll();
+        if (events.isEmpty()) {
+            return new ResponseEntity<>(events, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

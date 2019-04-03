@@ -21,9 +21,21 @@ public class LocationService {
         return  location;
     }
 
-    /*public Optional<Event>  findAll(){
-        Optional<Event> event = eventRepository.findAll();
+    public Optional<Location>  findByAdress(String adress){
+        Optional<Location> location = locationRepository.findByAdress(adress);
 
-        return  event;
-    }*/
+        return  location;
+    }
+
+    public Optional<Location>  findByCity(String city){
+        Optional<Location> location = locationRepository.findByCity(city);
+
+        return  location;
+    }
+
+    public Optional<Location>  findByCountry(String country){
+        Optional<Location> location = locationRepository.findByCountry(country);
+
+        return  location;
+    }
 }

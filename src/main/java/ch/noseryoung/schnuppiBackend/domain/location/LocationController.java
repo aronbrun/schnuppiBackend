@@ -18,9 +18,39 @@ public class LocationController {
         this.locationService = locationService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public @ResponseBody ResponseEntity<Location> getById(@PathVariable Long id){
         Optional<Location> location = locationService.findById(id);
+        if (location.isPresent()) {
+            return new ResponseEntity<>(location.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/adress/{adress}")
+    public @ResponseBody ResponseEntity<Location> getByAdress(@PathVariable String adress){
+        Optional<Location> location = locationService.findByAdress(adress);
+        if (location.isPresent()) {
+            return new ResponseEntity<>(location.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/city/{city}")
+    public @ResponseBody ResponseEntity<Location> getByCity(@PathVariable String city){
+        Optional<Location> location = locationService.findByCity(city);
+        if (location.isPresent()) {
+            return new ResponseEntity<>(location.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/country/{country}")
+    public @ResponseBody ResponseEntity<Location> getByCountry(@PathVariable String country){
+        Optional<Location> location = locationService.findByCountry(country);
         if (location.isPresent()) {
             return new ResponseEntity<>(location.get(), HttpStatus.OK);
         } else {
