@@ -1,5 +1,6 @@
 package ch.noseryoung.schnuppiBackend.domain.event;
 
+import ch.noseryoung.schnuppiBackend.domain.location.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,10 +28,17 @@ public class EventService {
 
         return  event;
     }
+    //finding Event by name
+    public Optional<Event>  findByName(String name){
+        Optional<Event> event = eventRepository.findByName(name);
+
+        return  event;
+    }
     //creating new Event
     public void save(Event event){
         eventRepository.save(event);
 
     }
+
 
 }
