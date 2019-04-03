@@ -3,6 +3,7 @@ package ch.noseryoung.schnuppiBackend.domain.parentClasses;
 import javax.persistence.*;
 
 @Entity
+@MappedSuperclass
 public class Person {
 
     @Id
