@@ -1,4 +1,7 @@
 package ch.noseryoung.schnuppiBackend.domain.berufsbildner;
 
-public class Berufsbildner {
+import ch.noseryoung.schnuppiBackend.domain.parentClasses.Person;
+
+public class Berufsbildner extends Person {
+
 }
