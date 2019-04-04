@@ -45,10 +45,14 @@ public class EventService {
         return  event;
     }
 
-    //creating new Event
+    //creating new event
     public void save(Event event){
         eventRepository.save(event);
 
+    }
+    //delete event by id
+    public void deleteById(Long id) {
+        eventRepository.deleteById(id);
     }
 
 
