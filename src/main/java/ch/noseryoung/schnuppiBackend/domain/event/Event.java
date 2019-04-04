@@ -33,8 +33,12 @@ public class Event {
     @Column
     private String subject;
 
-    @ManyToMany
-    @JoinTable
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "event_supervisor",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "supervisor_id")
+    )
     private Set<Supervisor> supervisor;
 
     public Event() {
