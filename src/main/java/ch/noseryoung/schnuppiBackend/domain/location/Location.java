@@ -18,7 +18,7 @@ public class Location {
     private String locationName;
 
     @Column
-    private String adress;
+    private String address;
     
     @Column
     private String city;
@@ -35,7 +35,7 @@ public class Location {
     public Location(Long id, String locationName, String adress, String city, String postalCode, String country) {
         this.id = id;
         this.locationName = locationName;
-        this.adress = adress;
+        this.address = adress;
         this.city = city;
         this.postalCode = postalCode;
         this.country = country;
@@ -43,7 +43,7 @@ public class Location {
 
     public Location(String locationName, String adress, String city, String postalCode, String country) {
         this.locationName = locationName;
-        this.adress = adress;
+        this.address = adress;
         this.city = city;
         this.postalCode = postalCode;
         this.country = country;
