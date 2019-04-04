@@ -1,15 +1,13 @@
-package ch.noseryoung.schnuppiBackend.domain.location;
+package ch.noseryoung.schnuppiBackend.domain.trainee;
 
+import ch.noseryoung.schnuppiBackend.domain.location.Location;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface LocationRepository extends JpaRepository<Location, Long>{
-    Optional<Location> findByAddress(String address);
-    Optional<Location> findByCity(String city);
-    Optional<Location> findByCountry(String country);
-    Optional<Location> findByLocationName(String location_name);
-    Optional<Location> findByPostalCode(String postcal_code);
+public interface TraineeRepository extends JpaRepository<Trainee, Long>{
+    Optional<Trainee> findByAge(String age);
+    Optional<Trainee> findByUUID(String uuid);
 }
