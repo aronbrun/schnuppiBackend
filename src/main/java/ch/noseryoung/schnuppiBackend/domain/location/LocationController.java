@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -73,6 +74,17 @@ public class LocationController {
         Optional<Location> location = locationService.findByPostalCode(postal_code);
         if (location.isPresent()) {
             return new ResponseEntity<>(location.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    //getting all database entries in entity
+    @GetMapping({"", "/"})
+    public @ResponseBody ResponseEntity<List<Location>> getAll(@PathVariable Long id){
+        List<Location> locations = locationService.findAll();
+        if (locations.isEmpty()) {
+            return new ResponseEntity<>(locations, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
