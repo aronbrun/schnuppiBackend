@@ -73,10 +73,17 @@ public class EventController {
 
     //delete event by id
     @DeleteMapping("/delete/id/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+    public ResponseEntity<Event> deleteById(@PathVariable Long id) {
         eventService.deleteById(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    //update event by id
+    @PutMapping("/update/id/{id}")
+    public ResponseEntity<Event> updateById(@PathVariable Long id, @RequestBody Event event) {
+        HttpStatus status = ((eventService.update(event, id)) ? HttpStatus.CREATED : HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>(event, status);
     }
 
 
