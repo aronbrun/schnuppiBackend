@@ -95,4 +95,26 @@ public class LocationController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    //create new Location
+    @PostMapping({"/new", "/new/"})
+    public @ResponseBody ResponseEntity<Location> createLocation(@RequestBody Location location){
+        locationService.save(location);
+        return new ResponseEntity<>(location, HttpStatus.CREATED);
+    }
+
+    //delete location by id
+    @DeleteMapping("/delete/id/{id}")
+    public ResponseEntity<Location> deleteById(@PathVariable Long id) {
+        locationService.deleteById(id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    //update location by id
+    @PutMapping("/update/id/{id}")
+    public ResponseEntity<Location> updateById(@PathVariable Long id, @RequestBody Location location) {
+        HttpStatus status = ((locationService.update(location, id)) ? HttpStatus.CREATED : HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>(location, status);
+    }
 }
