@@ -45,10 +45,27 @@ public class EventService {
         return  event;
     }
 
-    //creating new Event
+    //creating new event
     public void save(Event event){
         eventRepository.save(event);
 
+    }
+    //delete event by id
+    public void deleteById(Long id) {
+        eventRepository.deleteById(id);
+    }
+
+    //update event by id
+    public boolean update(Event event, Long id) {
+        Optional<Event> currentEvent = eventRepository.findById(id);
+        if (currentEvent.isPresent()) {
+            event.setId(id);
+        } else {
+            return false;
+        }
+
+        eventRepository.save(event);
+        return true;
     }
 
 
