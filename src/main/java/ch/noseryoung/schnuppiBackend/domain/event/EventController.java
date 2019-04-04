@@ -78,6 +78,7 @@ public class EventController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
     //update event by id
     @PutMapping("/update/id/{id}")
     public ResponseEntity<Event> updateById(@PathVariable Long id, @RequestBody Event event) {
