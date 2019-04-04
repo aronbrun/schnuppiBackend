@@ -1,10 +1,12 @@
 package ch.noseryoung.schnuppiBackend.domain.event;
 
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +20,8 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    //getting database entry by name
-    @GetMapping("/{id}")
+    //getting database entry by id
+    @GetMapping("/id/{id}")
     public @ResponseBody ResponseEntity<Event> getById(@PathVariable Long id){
         Optional<Event> event = eventService.findById(id);
         if (event.isPresent()) {
@@ -28,14 +30,45 @@ public class EventController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    //getting database entry by name
+    @GetMapping("/name/{name}")
+    public @ResponseBody ResponseEntity<Event> getByName(@PathVariable String name){
+        Optional<Event> event = eventService.findByName(name);
+        if (event.isPresent()) {
+            return new ResponseEntity<>(event.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    //getting database entry by subject
+    @GetMapping("/subject/{subject}")
+    public @ResponseBody ResponseEntity<Event> getBySubject(@PathVariable String subject){
+        Optional<Event> event = eventService.findBySubject(subject);
+        if (event.isPresent()) {
+            return new ResponseEntity<>(event.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     //getting all database entries in entity
     @GetMapping({"", "/"})
-    public @ResponseBody ResponseEntity<List<Event>> getAll(@PathVariable Long id){
+    public @ResponseBody ResponseEntity<List<Event>> getAll(){
         List<Event> events = eventService.findAll();
-        if (events.isEmpty()) {
+        if (!events.isEmpty()) {
             return new ResponseEntity<>(events, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    //create new Event
+    @PostMapping({"", "/"})
+    public @ResponseBody ResponseEntity<Event> createEvent(@RequestBody Event event){
+        eventService.save(event);
+        return new ResponseEntity<>(event, HttpStatus.CREATED);
+    }
+
 }
