@@ -31,8 +31,8 @@ public class TraineeService {
     }
 
     //finding entry by uuid
-    public Optional<Trainee> findByUUID(String city){
-        Optional<Trainee> trainee = traineeRepository.findByUUID(city);
+    public Optional<Trainee> findByUUID(String UUID){
+        Optional<Trainee> trainee = traineeRepository.findByuuid(UUID);
 
         return trainee;
     }

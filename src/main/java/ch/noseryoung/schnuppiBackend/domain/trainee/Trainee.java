@@ -28,16 +28,19 @@ public class Trainee extends Person {
     @JoinTable
     private Set<Event> events;
 
-    public Trainee(String age, String uuid, Set<Event> events) {
+    public Trainee() {
+    }
+
+    public Trainee(String age, Set<Event> events) {
         this.age = age;
         this.uuid = UUID.randomUUID().toString();
         this.events = events;
     }
 
-    public Trainee(Long id, String age, String uuid, Set<Event> events) {
+    public Trainee(Long id, String age, Set<Event> events) {
         this.id = id;
         this.age = age;
-        this.uuid = uuid;
+        this.uuid = UUID.randomUUID().toString();
         this.events = events;
     }
 }
