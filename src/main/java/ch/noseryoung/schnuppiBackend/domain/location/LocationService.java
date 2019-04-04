@@ -23,7 +23,7 @@ public class LocationService {
     }
 
     public Optional<Location> findByAddress(String address){
-        Optional<Location> location = locationRepository.findByAdress(address);
+        Optional<Location> location = locationRepository.findByAddress(address);
 
         return location;
     }
