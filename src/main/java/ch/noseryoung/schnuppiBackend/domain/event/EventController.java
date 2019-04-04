@@ -21,7 +21,7 @@ public class EventController {
     }
 
     //getting database entry by id
-    @GetMapping("/get/id/{id}")
+    @GetMapping("/{id}")
     public @ResponseBody ResponseEntity<Event> getById(@PathVariable Long id){
         Optional<Event> event = eventService.findById(id);
         if (event.isPresent()) {
@@ -32,8 +32,8 @@ public class EventController {
     }
 
     //getting database entry by name
-    @GetMapping("/get/name/{name}")
-    public @ResponseBody ResponseEntity<Event> getByName(@PathVariable String name){
+    @GetMapping(value = {"", "/"}, params = "name")
+    public @ResponseBody ResponseEntity<Event> getByName(@RequestParam("name") String name){
         Optional<Event> event = eventService.findByName(name);
         if (event.isPresent()) {
             return new ResponseEntity<>(event.get(), HttpStatus.OK);
@@ -43,8 +43,8 @@ public class EventController {
     }
 
     //getting database entry by subject
-    @GetMapping("/get/subject/{subject}")
-    public @ResponseBody ResponseEntity<Event> getBySubject(@PathVariable String subject){
+    @GetMapping(value = {"", "/"}, params = "subject")
+    public @ResponseBody ResponseEntity<Event> getBySubject(@RequestParam("subject") String subject){
         Optional<Event> event = eventService.findBySubject(subject);
         if (event.isPresent()) {
             return new ResponseEntity<>(event.get(), HttpStatus.OK);
@@ -54,7 +54,7 @@ public class EventController {
     }
 
     //getting all database entries in entity
-    @GetMapping({"/get/all", "/get/all/"})
+    @GetMapping({"", "/"})
     public @ResponseBody ResponseEntity<List<Event>> getAll(){
         List<Event> events = eventService.findAll();
         if (!events.isEmpty()) {
@@ -72,7 +72,7 @@ public class EventController {
     }
 
     //delete event by id
-    @DeleteMapping("/delete/id/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Event> deleteById(@PathVariable Long id) {
         eventService.deleteById(id);
 
@@ -80,7 +80,7 @@ public class EventController {
     }
 
     //update event by id
-    @PutMapping("/update/id/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Event> updateById(@PathVariable Long id, @RequestBody Event event) {
         HttpStatus status = ((eventService.update(event, id)) ? HttpStatus.CREATED : HttpStatus.NOT_FOUND);
 
