@@ -20,7 +20,7 @@ public class LocationController {
     }
 
     //getting database entry by id
-    @GetMapping("/get/id/{id}")
+    @GetMapping("/{id}")
     public @ResponseBody ResponseEntity<Location> getById(@PathVariable Long id){
         Optional<Location> location = locationService.findById(id);
         if (location.isPresent()) {
@@ -31,8 +31,8 @@ public class LocationController {
     }
 
     //getting database entry by address
-    @GetMapping("/get/address/{address}")
-    public @ResponseBody ResponseEntity<Location> getByAddress(@PathVariable String address){
+    @GetMapping(value = {"", "/"}, params = "address")
+    public @ResponseBody ResponseEntity<Location> getByAddress(@RequestParam("address") String address){
         Optional<Location> location = locationService.findByAddress(address);
         if (location.isPresent()) {
             return new ResponseEntity<>(location.get(), HttpStatus.OK);
@@ -42,8 +42,8 @@ public class LocationController {
     }
 
     //getting database entry by city
-    @GetMapping("/get/city/{city}")
-    public @ResponseBody ResponseEntity<Location> getByCity(@PathVariable String city){
+    @GetMapping(value = {"", "/"}, params = "city")
+    public @ResponseBody ResponseEntity<Location> getByCity(@RequestParam("city") String city){
         Optional<Location> location = locationService.findByCity(city);
         if (location.isPresent()) {
             return new ResponseEntity<>(location.get(), HttpStatus.OK);
@@ -53,8 +53,8 @@ public class LocationController {
     }
 
     //getting database entry by country
-    @GetMapping("/get/country/{country}")
-    public @ResponseBody ResponseEntity<Location> getByCountry(@PathVariable String country){
+    @GetMapping(value = {"", "/"}, params = "country")
+    public @ResponseBody ResponseEntity<Location> getByCountry(@RequestParam("country") String country){
         Optional<Location> location = locationService.findByCountry(country);
         if (location.isPresent()) {
             return new ResponseEntity<>(location.get(), HttpStatus.OK);
@@ -64,8 +64,8 @@ public class LocationController {
     }
 
     //getting database entry by location
-    @GetMapping("/get/location_name/{location_name}")
-    public @ResponseBody ResponseEntity<Location> getByLocationName(@PathVariable String location_name){
+    @GetMapping(value = {"", "/"}, params = "location")
+    public @ResponseBody ResponseEntity<Location> getByLocationName(@RequestParam("location_name") String location_name){
         Optional<Location> location = locationService.findByLocationName(location_name);
         if (location.isPresent()) {
             return new ResponseEntity<>(location.get(), HttpStatus.OK);
@@ -75,8 +75,8 @@ public class LocationController {
     }
 
     //getting database entry by postal code
-    @GetMapping("/get/postal_code/{postal_code}")
-    public @ResponseBody ResponseEntity<Location> getByPostalCode(@PathVariable String postal_code){
+    @GetMapping(value = {"", "/"}, params = "postal_code")
+    public @ResponseBody ResponseEntity<Location> getByPostalCode(@RequestParam("postal_code") String postal_code){
         Optional<Location> location = locationService.findByPostalCode(postal_code);
         if (location.isPresent()) {
             return new ResponseEntity<>(location.get(), HttpStatus.OK);
@@ -86,7 +86,7 @@ public class LocationController {
     }
 
     //getting all database entries in entity
-    @GetMapping({"/get/all", "/get/all/"})
+    @GetMapping({"", "/"})
     public @ResponseBody ResponseEntity<List<Location>> getAll(){
         List<Location> locations = locationService.findAll();
         if (!locations.isEmpty()) {
@@ -97,21 +97,21 @@ public class LocationController {
     }
 
     //create new Location
-    @PostMapping({"/new", "/new/"})
+    @PostMapping({"", "/"})
     public @ResponseBody ResponseEntity<Location> createLocation(@RequestBody Location location){
         locationService.save(location);
         return new ResponseEntity<>(location, HttpStatus.CREATED);
     }
 
     //delete location by id
-    @DeleteMapping("/delete/id/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Location> deleteById(@PathVariable Long id) {
         locationService.deleteById(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     //update location by id
-    @PutMapping("/update/id/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Location> updateById(@PathVariable Long id, @RequestBody Location location) {
         HttpStatus status = ((locationService.update(location, id)) ? HttpStatus.CREATED : HttpStatus.NOT_FOUND);
 
