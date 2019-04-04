@@ -1,6 +1,5 @@
 package ch.noseryoung.schnuppiBackend.domain.location;
 
-import ch.noseryoung.schnuppiBackend.domain.event.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,5 +62,28 @@ public class LocationService {
         List<Location> location = locationRepository.findAll();
 
         return location;
+    }
+
+    //creating new location
+    public void save(Location location){
+        locationRepository.save(location);
+
+    }
+    //delete location by id
+    public void deleteById(Long id) {
+        locationRepository.deleteById(id);
+    }
+
+    //update location by id
+    public boolean update(Location location, Long id) {
+        Optional<Location> currentLocation = locationRepository.findById(id);
+        if (currentLocation.isPresent()) {
+            location.setId(id);
+        } else {
+            return false;
+        }
+
+        locationRepository.save(location);
+        return true;
     }
 }
