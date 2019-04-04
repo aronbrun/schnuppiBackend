@@ -21,7 +21,7 @@ public class EventController {
     }
 
     //getting database entry by id
-    @GetMapping("/id/{id}")
+    @GetMapping("/get/id/{id}")
     public @ResponseBody ResponseEntity<Event> getById(@PathVariable Long id){
         Optional<Event> event = eventService.findById(id);
         if (event.isPresent()) {
@@ -32,7 +32,7 @@ public class EventController {
     }
 
     //getting database entry by name
-    @GetMapping("/name/{name}")
+    @GetMapping("/get/name/{name}")
     public @ResponseBody ResponseEntity<Event> getByName(@PathVariable String name){
         Optional<Event> event = eventService.findByName(name);
         if (event.isPresent()) {
@@ -43,7 +43,7 @@ public class EventController {
     }
 
     //getting database entry by subject
-    @GetMapping("/subject/{subject}")
+    @GetMapping("/get/subject/{subject}")
     public @ResponseBody ResponseEntity<Event> getBySubject(@PathVariable String subject){
         Optional<Event> event = eventService.findBySubject(subject);
         if (event.isPresent()) {
@@ -54,7 +54,7 @@ public class EventController {
     }
 
     //getting all database entries in entity
-    @GetMapping({"", "/"})
+    @GetMapping({"/get/all", "/get/all/"})
     public @ResponseBody ResponseEntity<List<Event>> getAll(){
         List<Event> events = eventService.findAll();
         if (!events.isEmpty()) {
@@ -70,5 +70,14 @@ public class EventController {
         eventService.save(event);
         return new ResponseEntity<>(event, HttpStatus.CREATED);
     }
+
+    //delete event by id
+    @DeleteMapping("/delete/id/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        eventService.deleteById(id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 }
