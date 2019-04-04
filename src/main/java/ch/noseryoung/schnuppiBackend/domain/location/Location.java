@@ -32,18 +32,18 @@ public class Location {
     public Location() {
     }
 
-    public Location(Long id, String locationName, String adress, String city, String postalCode, String country) {
+    public Location(Long id, String locationName, String address, String city, String postalCode, String country) {
         this.id = id;
         this.locationName = locationName;
-        this.address = adress;
+        this.address = address;
         this.city = city;
         this.postalCode = postalCode;
         this.country = country;
     }
 
-    public Location(String locationName, String adress, String city, String postalCode, String country) {
+    public Location(String locationName, String address, String city, String postalCode, String country) {
         this.locationName = locationName;
-        this.address = adress;
+        this.address = address;
         this.city = city;
         this.postalCode = postalCode;
         this.country = country;
