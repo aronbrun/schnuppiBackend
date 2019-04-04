@@ -29,9 +29,9 @@ public class LocationController {
         }
     }
 
-    @GetMapping("/adress/{adress}")
-    public @ResponseBody ResponseEntity<Location> getByAdress(@PathVariable String adress){
-        Optional<Location> location = locationService.findByAdress(adress);
+    @GetMapping("/address/{address}")
+    public @ResponseBody ResponseEntity<Location> getByAddress(@PathVariable String address){
+        Optional<Location> location = locationService.findByAddress(address);
         if (location.isPresent()) {
             return new ResponseEntity<>(location.get(), HttpStatus.OK);
         } else {
@@ -80,10 +80,10 @@ public class LocationController {
     }
 
     //getting all database entries in entity
-    @GetMapping({"", "/"})
-    public @ResponseBody ResponseEntity<List<Location>> getAll(@PathVariable Long id){
+    @GetMapping({"/all", "/all/"})
+    public @ResponseBody ResponseEntity<List<Location>> getAll(){
         List<Location> locations = locationService.findAll();
-        if (locations.isEmpty()) {
+        if (!locations.isEmpty()) {
             return new ResponseEntity<>(locations, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

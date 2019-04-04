@@ -22,8 +22,8 @@ public class LocationService {
         return location;
     }
 
-    public Optional<Location> findByAdress(String adress){
-        Optional<Location> location = locationRepository.findByAdress(adress);
+    public Optional<Location> findByAddress(String address){
+        Optional<Location> location = locationRepository.findByAdress(address);
 
         return location;
     }
