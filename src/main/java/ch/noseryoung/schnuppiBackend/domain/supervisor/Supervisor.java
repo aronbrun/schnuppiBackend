@@ -24,6 +24,9 @@ public class Supervisor extends Person {
     @JoinColumn(name = "location_id")
     private Location location;
 
+    public Supervisor(){
+
+    }
     public Supervisor(String jobDescription, Location location) {
         this.jobDescription = jobDescription;
         this.location = location;
